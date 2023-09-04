@@ -1,0 +1,364 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.22621}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9 def amount_withdraw(account_balance,account_pin):\par
+    a = 0\par
+    acc_num = input("ENTER A BANK ACCOUNT NUMBER: ")\par
+    if acc_num not in account_balance.keys():\par
+        return "Invalid account number"\par
+\par
+    usr_pin = input("ENTER A PIN: ")\par
+    if usr_pin not in account_pin.values():\par
+        return "Invalid pin"\par
+\par
+    for i, j in account_pin.items():\par
+        if i == acc_num and j == usr_pin:\par
+            a += 1\par
+            break\par
+    if a > 0:\par
+        pass\par
+    else:\par
+        return "Invalid information"\par
+\par
+\par
+    while True:\par
+        amount = int(input("ENTER WITHDRAW AMOUNT : "))\par
+        if amount<=0:\par
+            print("PLEASE ENTER VALID AMOUNT")\par
+        else:\par
+            break\par
+\par
+\par
+    for i,j in account_balance.items():\par
+        if i==acc_num:\par
+            if amount>j:\par
+                return "insufficient funds"\par
+            else:\par
+                re=j-amount\par
+                account_balance[i]=re\par
+                print("YOUR WITHDRAW AMOUNT IS :\{\}".format(amount))\par
+                u_input=input("DO U WANT SHOW REMAINING AMOUNT yes/no:")\par
+                if u_input=="no":\par
+\par
+                    return account_balance\par
+                else:\par
+                    print("YOUR REMAINING AMOUNT IS: \{\}".format(re))\par
+                    return account_balance\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+# display balance enquiry\par
+\par
+def display_balance_enquiry(account_balance,account_pin):\par
+    a=0\par
+    acc_num = input("ENTER A BANK ACCOUNT NUMBER: ")\par
+    if acc_num not in account_balance.keys():\par
+        return "Invalid account number"\par
+\par
+    usr_pin=input("ENTER A PIN: ")\par
+    if usr_pin not in account_pin.values():\par
+        return "Invalid pin"\par
+\par
+    for i,j in account_pin.items():\par
+        if i==acc_num and j==usr_pin:\par
+            a+=1\par
+            break\par
+    if a>0:\par
+        pass\par
+    else:\par
+        return "Invalid information"\par
+\par
+    for i,j in account_pin.items():\par
+        if i==acc_num and j==usr_pin:\par
+            bal=account_balance[i]\par
+            return bal\par
+\par
+\par
+\par
+\par
+\par
+# atm card pin change\par
+\par
+def atm_pin_change(account_pin):\par
+    a = 0\par
+    acc_num = input("ENTER A BANK ACCOUNT NUMBER: ")\par
+\par
+    if acc_num not in account_pin.keys():\par
+        return "Invalid account number"\par
+\par
+    pre_pin=input("ENTER A PREVIOUS PIN: ")\par
+    if pre_pin not in account_pin.values():\par
+        return "Invalid pin"\par
+    print(account_pin)\par
+    for i,j in account_pin.items():\par
+        if i==acc_num and j==pre_pin:\par
+            a+=1\par
+            break\par
+    if a>0:\par
+\par
+        while True:\par
+            user_pin_input = input("ENTER A NEW PIN:")\par
+            if user_pin_input.isdigit():\par
+                if len(user_pin_input) < 5:\par
+                    account_pin[acc_num] = user_pin_input\par
+                    return account_pin\par
+                else:\par
+                    print("PLEASE ENTER A 4 DIGIT NUMBER: ")\par
+                    continue\par
+            else:\par
+                print("PLEASE ENTER A 4 DIGIT NUMBER: ")\par
+                continue\par
+    else:\par
+        return "Invalid account information"\par
+\par
+\par
+\par
+\par
+\par
+def atm_pin_generation(account_pin,secret_person_pin):\par
+    a=0\par
+    acc_num=input("ENTER A BANK ACCOUNT NUMBER: ")\par
+    scret_pin=int(input("ENTER SECRET PIN: "))\par
+\par
+    for i,j in secret_person_pin.items():\par
+        if i==acc_num and j==scret_pin:\par
+            a+=1\par
+            break\par
+    if a>0:\par
+        pass\par
+    else:\par
+        return "Invalid account number"\par
+    while True:\par
+        user_pin_input=input("ENTER A NEW PIN:")\par
+        if user_pin_input.isdigit():\par
+            if len(user_pin_input)<5:\par
+                account_pin[acc_num]=user_pin_input\par
+                return account_pin\par
+            else:\par
+                print("PLEASE ENTER A 4 DIGIT NUMBER: ")\par
+                continue\par
+        else:\par
+            print("PLEASE ENTER A 4 DIGIT NUMBER: ")\par
+            continue\par
+\par
+\par
+\par
+# the below details are account information like data base\par
+\par
+print("u can perform operation on below data")\par
+account_holder_name=\{"1111111111":"raja","2222222222":"mahesh","3333333333":"balu","4444444444":"hari reddy","5555555555":"mouli","6666666666":"varma","7777777777":"chiru","8888888888":"saketh","9999999999":"chaitanya"\}\par
+print("account number and name")\par
+print(account_holder_name)\par
+account_balance=\{"1111111111":98765,"2222222222":9876,"3333333333":8987,"4444444444":98765,"5555555555":2345678,"6666666666":9876,"7777777777":2345,"8888888888":98765,"9999999999":1234\}\par
+print("account number and balance")\par
+print(account_balance)\par
+account_pin=\{"1111111111":" ","2222222222":"2340","3333333333":" ","4444444444":"4560","5555555555":" ","6666666666":"6780","7777777777":" ","8888888888":"8900","9999999999":" "\}\par
+print("account number and PIN")\par
+print(account_pin)\par
+secret_person_pin=\{"1111111111":1234,"2222222222":2345,"3333333333":3456,"4444444444":4567,"5555555555":5678,"6666666666":6789,"7777777777":7890,"8888888888":8901,"9999999999":9012\}\par
+print("account number and SECRET PIN")\par
+print(secret_person_pin)\par
+\par
+\par
+\par
+\par
+while True:\par
+    print("WELCOME TO SBI ATM ,  THANKS FOR VISITING US,  HOW CAN I HELP YOU")\par
+    print("="*50)\par
+    print("1. ATM PIN GENERATION")\par
+    print("2. ATM PIN CHANGE")\par
+    print("3. BALANCE ENQUIRY")\par
+    print("4. CASH WITHDRAW")\par
+    print("5. MONEY TRANSFER")\par
+    print("6. MOBILE RECHARGE")\par
+    print("7. MINI STATEMENT")\par
+    print("8. SHOPPING PAYMENT")\par
+    print("=" * 50)\par
+\par
+    while True:\par
+        u_input = input("ENTER NUMBER: ")\par
+        if (u_input == "1" or u_input=="2" or u_input=="3" or u_input=="4" or u_input=="5" or u_input=="6" or u_input=="7" or u_input=="8"):\par
+            break\par
+        print("PLEASE ENTER RIGHT NUMBER")\par
+        print("=" * 50)\par
+\par
+\par
+# atm pin generating function\par
+\par
+    if u_input == "1":\par
+        print(account_pin)\par
+        result = atm_pin_generation (account_pin,secret_person_pin)\par
+        if result=="Invalid account number":\par
+            print("INVALID ACCOUNT NUMBER")\par
+            print("PLEASE TRY AGAIN")\par
+            u_result=input("DO YOU WANT SHOW MAIN MENU:yes/no: ")\par
+            if u_result=="no":\par
+                print("THANKS FOR VISITING US")\par
+                print("="*50)\par
+                break\par
+            else:\par
+                continue\par
+\par
+        elif type(result)==dict:\par
+            account_pin=result\par
+            print("YOUR PIN GENERATING IS SUCCESSFULLY")\par
+            u_taken_input=input("DO YOU WANT SHOW MAIN MENU: yes/no :")\par
+            if u_taken_input=="no":\par
+                print("THANKS FOR VISITING US")\par
+                print(account_pin)\par
+                break\par
+            else:\par
+                print("="*50)\par
+                print(account_pin)\par
+                continue\par
+\par
+# atm pin change function\par
+\par
+    elif u_input == "2":\par
+        print(account_pin)\par
+        result = atm_pin_change(account_pin)\par
+        if result=="Invalid account number":\par
+            print("INVALID ACCOUNT NUMBER")\par
+            print("PLEASE TRY AGAIN")\par
+            u_result = input("DO YOU WANT SHOW MAIN MENU :yes/no: ")\par
+            if u_result == "no":\par
+                print("THANKS FOR VISITING US")\par
+                print("=" * 50)\par
+                break\par
+            else:\par
+                continue\par
+        elif result=="Invalid pin":\par
+            print("INVALID PIN NUMBER")\par
+            print("PLEASE TRY AGAIN")\par
+            u_result = input("DO YOU WANT SHOW MAIN MENU :yes/no: ")\par
+            if u_result == "no":\par
+                print("THANKS FOR VISITING US")\par
+                print("=" * 50)\par
+                break\par
+            else:\par
+                continue\par
+        elif result=="Invalid account information":\par
+            print("INVALID ACCOUNT INFORMATION")\par
+            print("PLEASE TRY AGAIN")\par
+            u_result = input("DO YOU WANT SHOW MAIN MENU :yes/no: ")\par
+            if u_result == "no":\par
+                print("THANKS FOR VISITING US")\par
+                print("=" * 50)\par
+                break\par
+            else:\par
+                continue\par
+        elif type(result)==dict:\par
+            account_pin=result\par
+            print("YOUR PIN GENERATING IS SUCCESSFULLY")\par
+            u_taken_input=input("DO YOU WANT SHOW MAIN MENU: yes/no :")\par
+            if u_taken_input=="no":\par
+                print("THANKS FOR VISITING US")\par
+                print(account_pin)\par
+                break\par
+            else:\par
+                print("="*50)\par
+                print(account_pin)\par
+                continue\par
+\par
+\par
+\par
+    elif u_input == "3":\par
+        result=display_balance_enquiry(account_balance,account_pin)\par
+        if result=="Invalid account number":\par
+            print("INVALID ACCOUNT NUMBER")\par
+            u_taken_input = input("DO YOU WANT SHOW MAIN MENU: yes/no :")\par
+            if u_taken_input=="no":\par
+                print("THANKS FOR VISITING US")\par
+                break\par
+            else:\par
+                print("="*50)\par
+                continue\par
+        elif result=="Invalid pin":\par
+            print("INVALID PIN NUMBER")\par
+            u_taken_input = input("DO YOU WANT SHOW MAIN MENU: yes/no :")\par
+            if u_taken_input == "no":\par
+                break\par
+            else:\par
+                print("=" * 50)\par
+                continue\par
+        elif result=="Invalid information":\par
+            print("INVALID ACCOUNT INFORMATION")\par
+            u_taken_input = input("DO YOU WANT SHOW MAIN MENU: yes/no :")\par
+            if u_taken_input == "no":\par
+                print("THANKS FOR VISITING US")\par
+                break\par
+            else:\par
+                print("=" * 50)\par
+                continue\par
+        else:\par
+            print("YOUR ACCOUNT BALANCE IS: \{\}".format(result))\par
+            u_taken_input = input("DO YOU WANT SHOW MAIN MENU: yes/no :")\par
+            if u_taken_input == "no":\par
+                break\par
+            else:\par
+                print("=" * 50)\par
+                continue\par
+\par
+    elif u_input == "4":\par
+        result=amount_withdraw(account_balance,account_pin)\par
+        if result=="Invalid account number":\par
+            print("INVALID ACCOUNT NUMBER")\par
+            u_taken_input = input("DO YOU WANT SHOW MAIN MENU: yes/no :")\par
+            if u_taken_input=="no":\par
+                print("THANKS FOR VISITING US")\par
+                break\par
+            else:\par
+                print("="*50)\par
+                continue\par
+        elif result=="Invalid pin":\par
+            print("INVALID PIN NUMBER")\par
+            u_taken_input = input("DO YOU WANT SHOW MAIN MENU: yes/no :")\par
+            if u_taken_input == "no":\par
+                break\par
+            else:\par
+                print("=" * 50)\par
+                continue\par
+        elif result=="Invalid information":\par
+            print("INVALID ACCOUNT INFORMATION")\par
+            u_taken_input = input("DO YOU WANT SHOW MAIN MENU: yes/no :")\par
+            if u_taken_input == "no":\par
+                print("THANKS FOR VISITING US")\par
+                break\par
+            else:\par
+                print("=" * 50)\par
+                continue\par
+\par
+        elif result=="insufficient funds":\par
+            print("INSUFFICIENT FUNDS")\par
+            u_taken_input = input("DO YOU WANT SHOW MAIN MENU: yes/no :")\par
+            if u_taken_input == "no":\par
+                print("THANKS FOR VISITING US")\par
+                break\par
+            else:\par
+                print("=" * 50)\par
+                continue\par
+        elif type(result)==dict:\par
+            account_balance=result\par
+            u_taken_input = input("DO YOU WANT SHOW MAIN MENU: yes/no :")\par
+            if u_taken_input == "no":\par
+                print("THANKS FOR VISITING US")\par
+                print(account_balance)\par
+                break\par
+            else:\par
+                print(account_balance)\par
+                print("=" * 50)\par
+                continue\par
+\par
+    elif u_input == "5":\par
+        pass\par
+    elif u_input == "6":\par
+        pass\par
+    elif u_input == "7":\par
+        pass\par
+    elif u_input == "8":\par
+        pass\par
+}
+ 
